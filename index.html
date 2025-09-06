@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Surat Pernyataan Tidak Menggunakan Kendaraan Dinas</title>
+    <style>
+      /* General body and container styling */
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f4f4f4;
+        color: #333;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        overflow-x: auto;
+      }
+      h1,
+      h2,
+      h3 {
+        text-align: center;
+        color: #000;
+      }
+
+      /* Form Table styling for horizontal layout */
+      .form-table-wrapper {
+        margin-top: 20px;
+      }
+      .form-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .form-table th,
+      .form-table td {
+        padding: 8px;
+        border: 1px solid #ccc;
+        vertical-align: top;
+      }
+      .form-table th {
+        background-color: #f2f2f2;
+        text-align: left;
+        font-size: 14px;
+      }
+      /* Style for date and text inputs */
+      .form-table input[type="text"],
+      .form-table input[type="date"] {
+        width: calc(100% - 16px);
+        padding: 8px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-family: "Arial", sans-serif;
+        font-size: 14px;
+      }
+      .form-table .button-group {
+        display: flex;
+        gap: 5px;
+      }
+      .form-table button {
+        flex: 1;
+        padding: 8px;
+        font-size: 12px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        color: white;
+        white-space: nowrap;
+      }
+      .form-table .print-button {
+        background-color: #007bff;
+      }
+      .form-table .reset-button {
+        background-color: #dc3545;
+      }
+      .form-table .print-button:hover {
+        background-color: #0056b3;
+      }
+      .form-table .reset-button:hover {
+        background-color: #c82333;
+      }
+
+      /* Add row and Reset All buttons styling */
+      .button-controls {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 15px;
+      }
+      #add-row-button,
+      #reset-all-button,
+      #print-all-button {
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        color: white;
+      }
+      #add-row-button {
+        background-color: #28a745;
+      }
+      #add-row-button:hover {
+        background-color: #218838;
+      }
+      #reset-all-button {
+        background-color: #dc3545;
+      }
+      #reset-all-button:hover {
+        background-color: #c82333;
+      }
+      #print-all-button {
+        background-color: #007bff;
+      }
+      #print-all-button:hover {
+        background-color: #0056b3;
+      }
+
+      /* Printable Page Styling */
+      /* Removed box-shadow here */
+      .printable-page {
+        display: none;
+        background: #fff;
+        padding: 40px;
+        margin: 20px auto;
+        max-width: 800px;
+      }
+      /* New print container for multiple pages */
+      #print-container {
+        display: none;
+      }
+
+      .content-wrapper {
+        line-height: 1.6;
+        break-after: page; /* Ensures a page break after each content-wrapper */
+      }
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        margin-bottom: 20px;
+      }
+      .logo {
+        position: absolute;
+        left: 0;
+        width: 200px;
+        margin-bottom: 20px;
+      }
+      .header-titles {
+        margin-top: 15px;
+      }
+      header h2 {
+        font-size: 16pt;
+        margin: 0;
+      }
+      main h2,
+      main h3 {
+        margin-top: 30px;
+        margin-bottom: 10px;
+      }
+      /* Adjusted table for print details for better alignment */
+      table.print-details {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+      table.print-details td {
+        padding: 2px 0;
+      }
+      .table-label {
+        width: 120px;
+        text-align: left;
+      }
+      .table-colon {
+        width: 10px;
+        text-align: center;
+        padding: 0;
+      }
+      p {
+        text-align: justify;
+        margin: 10px 0;
+      }
+      .signature-section-wrapper {
+        display: flex;
+        justify-content: flex-end;
+      }
+      .signature-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 40px;
+      }
+      .signature-section .date {
+        margin-bottom: 2px;
+      }
+      .signature-section .signer {
+        margin-top: 2px;
+      }
+      .signature-line {
+        width: 200px;
+        height: 1px;
+        background-color: #000;
+        margin: 50px 0 5px 0;
+      }
+      .name-signer {
+        font-weight: bold;
+      }
+      @page {
+        size: A4;
+        margin: 2cm;
+      }
+      @media print {
+        body {
+          font-family: "Times New Roman", Times, serif;
+        }
+        body > *:not(#print-container) {
+          display: none;
+        }
+        #print-container {
+          display: block !important;
+          width: 100%;
+          margin: 0;
+          box-shadow: none;
+          padding: 0;
+        }
+        .content-wrapper {
+          break-after: page;
+        }
+        header {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: relative;
+        }
+        .logo {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 200px;
+          margin-bottom: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container" id="form-container">
+      <h1>Surat Pernyataan Tidak Menggunakan Kendaraan Dinas</h1>
+      <p>Silakan isi data yang diperlukan pada baris yang tersedia.</p>
+
+      <div class="form-table-wrapper">
+        <table class="form-table">
+          <thead>
+            <tr>
+              <th>Nama Pegawai</th>
+              <th>Nomor Surat Tugas</th>
+              <th>Tanggal Surat Tugas</th>
+              <th>Tanggal Tidak Menggunakan Kendaraan Dinas</th>
+              <th>Tanggal Dikeluarkan</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="pegawai-list-body"></tbody>
+        </table>
+      </div>
+      <div class="button-controls">
+        <button type="button" id="reset-all-button">Reset Semua</button>
+        <button type="button" id="print-all-button">Cetak Semua</button>
+        <button type="button" id="add-row-button">+ Tambah Baris</button>
+      </div>
+    </div>
+
+    <div id="print-container"></div>
+
+    <script src="data.js"></script>
+    <script>
+      let rowCounter = 0;
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // Render initial 5 rows
+        for (let i = 0; i < 5; i++) {
+          addRow();
+        }
+
+        // Add event listener for the "Add Row" button
+        document.getElementById("add-row-button").addEventListener("click", addRow);
+
+        // Add event listener for the "Reset All" button
+        document.getElementById("reset-all-button").addEventListener("click", handleResetAll);
+
+        // Add event listener for the new "Print All" button
+        document.getElementById("print-all-button").addEventListener("click", handlePrintAll);
+      });
+
+      function addRow() {
+        const tbody = document.getElementById("pegawai-list-body");
+        const row = document.createElement("tr");
+        const uniqueId = `names-list-${rowCounter++}`;
+
+        row.innerHTML = `
+                <td>
+                    <input type="text" class="name-input" list="${uniqueId}" placeholder="Ketik nama untuk mencari" required>
+                    <datalist id="${uniqueId}"></datalist>
+                </td>
+                <td><input type="text" class="entry1" placeholder="Nomor Surat Tugas" required></td>
+                <td><input type="date" class="entry2" required></td>
+                <td><input type="date" class="entry3" required></td>
+                <td><input type="date" class="entry5" required></td>
+                <td>
+                    <div class="button-group">
+                        <button type="button" class="print-button">Cetak</button>
+                        <button type="button" class="reset-button">Ulangi</button>
+                    </div>
+                </td>
+            `;
+        tbody.appendChild(row);
+
+        // Populate datalist and add event listeners for the new row
+        populateDatalist(row.querySelector("datalist"));
+
+        const printButton = row.querySelector(".print-button");
+        const resetButton = row.querySelector(".reset-button");
+        const nameInput = row.querySelector(".name-input");
+
+        printButton.addEventListener("click", () => handlePrint(row));
+        resetButton.addEventListener("click", () => handleReset(row));
+        nameInput.addEventListener("input", () => autofillData(row));
+      }
+
+      function populateDatalist(datalistElement) {
+        databasePegawai.forEach((pegawai) => {
+          const option = document.createElement("option");
+          option.value = pegawai.nama;
+          datalistElement.appendChild(option);
+        });
+      }
+
+      function autofillData(rowElement) {
+        const selectedName = rowElement.querySelector(".name-input").value;
+        const selectedPegawai = databasePegawai.find((pegawai) => pegawai.nama === selectedName);
+
+        if (selectedPegawai) {
+          // Store selected employee data in a data attribute for later use
+          rowElement.dataset.pegawai = JSON.stringify(selectedPegawai);
+        } else {
+          rowElement.dataset.pegawai = "";
+        }
+      }
+
+      // New function to format date to Indonesian
+      function formatDateToIndonesian(dateString) {
+        const date = new Date(dateString);
+        const options = { day: "numeric", month: "long", year: "numeric" };
+        const formattedDate = date.toLocaleDateString("id-ID", options);
+        return formattedDate;
+      }
+
+      // New function to check if a date is a weekend
+      function isWeekend(dateString) {
+        const date = new Date(dateString);
+        const day = date.getDay(); // Sunday is 0, Saturday is 6
+        return day === 0 || day === 6;
+      }
+
+      function handlePrint(rowElement) {
+        const selectedName = rowElement.querySelector(".name-input").value;
+        const entry1 = rowElement.querySelector(".entry1").value;
+        const entry2 = rowElement.querySelector(".entry2").value;
+        const entry3 = rowElement.querySelector(".entry3").value;
+        const entry5 = rowElement.querySelector(".entry5").value;
+
+        const selectedPegawai = databasePegawai.find((pegawai) => pegawai.nama === selectedName);
+
+        // Validasi: Cek apakah nama yang diinput ada di databasePegawai
+        if (!selectedPegawai) {
+          alert("Nama yang Anda pilih tidak valid. Mohon pilih nama dari daftar yang tersedia.");
+          return; // Hentikan proses jika nama tidak valid
+        }
+
+        // Konversi tanggal dari string ke objek Date untuk perbandingan
+        const dateTask = new Date(entry2);
+        const dateNonUse = new Date(entry3);
+        const dateIssued = new Date(entry5);
+
+        // Validasi baru: Tanggal Surat Tugas dan Tanggal Dikeluarkan tidak boleh hari Sabtu atau Minggu
+        if (isWeekend(entry2)) {
+          alert("Tanggal Surat Tugas tidak boleh jatuh di hari Sabtu atau Minggu. Mohon perbaiki.");
+          return;
+        }
+        if (isWeekend(entry5)) {
+          alert("Tanggal Dikeluarkan tidak boleh jatuh di hari Sabtu atau Minggu. Mohon perbaiki.");
+          return;
+        }
+
+        // Validasi 1: Tanggal tidak menggunakan kendaraan dinas harus setelah atau sama dengan tanggal surat tugas
+        if (dateNonUse < dateTask) {
+          alert("Tanggal Tidak Menggunakan Kendaraan Dinas tidak boleh lebih awal dari Tanggal Surat Tugas. Mohon perbaiki.");
+          return;
+        }
+
+        // Validasi 2: Tanggal dikeluarkan harus setelah tanggal tidak menggunakan kendaraan dinas
+        if (dateIssued <= dateNonUse) {
+          alert("Tanggal Dikeluarkan tidak boleh sama dengan atau lebih awal dari Tanggal Tidak Menggunakan Kendaraan Dinas. Mohon perbaiki.");
+          return;
+        }
+
+        if (selectedName && entry1 && entry2 && entry3 && entry5) {
+          // Populate a new temporary container for this single print
+          const tempPrintContainer = document.createElement("div");
+          tempPrintContainer.className = "printable-page";
+          tempPrintContainer.innerHTML = generatePrintableContent(selectedPegawai, entry1, entry2, entry3, entry5);
+          document.body.appendChild(tempPrintContainer);
+
+          // Hide main form and show the single print container
+          document.getElementById("form-container").style.display = "none";
+          tempPrintContainer.style.display = "block";
+
+          window.print();
+
+          // Clean up and restore view
+          document.getElementById("form-container").style.display = "block";
+          document.body.removeChild(tempPrintContainer);
+        } else {
+          alert("Mohon lengkapi semua data sebelum mencetak.");
+        }
+      }
+
+      function handleReset(rowElement) {
+        rowElement.querySelector(".name-input").value = "";
+        rowElement.querySelector(".entry1").value = "";
+        rowElement.querySelector(".entry2").value = "";
+        rowElement.querySelector(".entry3").value = "";
+        rowElement.querySelector(".entry5").value = "";
+        rowElement.dataset.pegawai = "";
+      }
+
+      // New function to reset all rows
+      function handleResetAll() {
+        const allRows = document.querySelectorAll("#pegawai-list-body tr");
+        allRows.forEach((rowElement) => {
+          handleReset(rowElement);
+        });
+      }
+
+      // New function to handle printing all filled rows
+      function handlePrintAll() {
+        const allRows = document.querySelectorAll("#pegawai-list-body tr");
+        const printContainer = document.getElementById("print-container");
+        let hasValidRows = false;
+        let validationErrorFound = false;
+
+        // Clear previous content
+        printContainer.innerHTML = "";
+
+        for (const rowElement of allRows) {
+          const selectedName = rowElement.querySelector(".name-input").value;
+          const entry1 = rowElement.querySelector(".entry1").value;
+          const entry2 = rowElement.querySelector(".entry2").value;
+          const entry3 = rowElement.querySelector(".entry3").value;
+          const entry5 = rowElement.querySelector(".entry5").value;
+
+          // Check if the row is filled out
+          if (selectedName && entry1 && entry2 && entry3 && entry5) {
+            const selectedPegawai = databasePegawai.find((pegawai) => pegawai.nama === selectedName);
+
+            // Re-run validation for each filled row
+            const dateTask = new Date(entry2);
+            const dateNonUse = new Date(entry3);
+            const dateIssued = new Date(entry5);
+
+            if (!selectedPegawai) {
+              alert("Ada nama yang tidak valid. Mohon periksa kembali semua baris.");
+              validationErrorFound = true;
+              break;
+            }
+            if (isWeekend(entry2)) {
+              alert("Tanggal Surat Tugas di salah satu baris jatuh pada hari Sabtu atau Minggu. Mohon perbaiki.");
+              validationErrorFound = true;
+              break;
+            }
+            if (isWeekend(entry5)) {
+              alert("Tanggal Dikeluarkan di salah satu baris jatuh pada hari Sabtu atau Minggu. Mohon perbaiki.");
+              validationErrorFound = true;
+              break;
+            }
+            if (dateNonUse < dateTask) {
+              alert("Tanggal Tidak Menggunakan Kendaraan Dinas di salah satu baris lebih awal dari Tanggal Surat Tugas. Mohon perbaiki.");
+              validationErrorFound = true;
+              break;
+            }
+            if (dateIssued <= dateNonUse) {
+              alert("Tanggal Dikeluarkan di salah satu baris lebih awal atau sama dengan Tanggal Tidak Menggunakan Kendaraan Dinas. Mohon perbaiki.");
+              validationErrorFound = true;
+              break;
+            }
+
+            hasValidRows = true;
+            const content = generatePrintableContent(selectedPegawai, entry1, entry2, entry3, entry5);
+            printContainer.innerHTML += content;
+          }
+        }
+
+        if (validationErrorFound) {
+          return;
+        }
+
+        if (!hasValidRows) {
+          alert("Tidak ada baris yang terisi lengkap atau valid untuk dicetak. Mohon isi data dengan benar.");
+          return;
+        }
+
+        // Hide the main form and show the print container
+        document.getElementById("form-container").style.display = "none";
+        printContainer.style.display = "block";
+
+        window.print();
+
+        // Clean up and restore view
+        document.getElementById("form-container").style.display = "block";
+        printContainer.style.display = "none";
+      }
+
+      // Helper function to generate the HTML content for a single print page
+      function generatePrintableContent(pegawai, entry1, entry2, entry3, entry5) {
+        const formattedDate2 = formatDateToIndonesian(entry2);
+        const formattedDate3 = formatDateToIndonesian(entry3);
+        const formattedDate5 = formatDateToIndonesian(entry5);
+
+        return `
+                <div class="content-wrapper">
+                    <header>
+                        <img src="logo.png" alt="Logo Perusahaan" class="logo">
+                        <div class="header-titles">
+                            <h2>SURAT PERNYATAAN</h2>
+                            <h2>TIDAK MENGGUNAKAN KENDARAAN DINAS</h2>
+                        </div>
+                    </header>
+                    <main>
+                        <p>Yang bertanda tangan di bawah ini:</p>
+                        <table class="print-details">
+                            <tr>
+                                <td class="table-label">Nama</td>
+                                <td class="table-colon">:</td>
+                                <td>${pegawai.nama}</td>
+                            </tr>
+                            <tr>
+                                <td class="table-label">NIP</td>
+                                <td class="table-colon">:</td>
+                                <td>${pegawai.nip}</td>
+                            </tr>
+                            <tr>
+                                <td class="table-label">Pangkat/Golongan</td>
+                                <td class="table-colon">:</td>
+                                <td>${pegawai.pangkat}</td>
+                            </tr>
+                            <tr>
+                                <td class="table-label">Jabatan</td>
+                                <td class="table-colon">:</td>
+                                <td>${pegawai.jabatan}</td>
+                            </tr>
+                            <tr>
+                                <td class="table-label">Unit Kerja</td>
+                                <td class="table-colon">:</td>
+                                <td>BPS Kota Jakarta Barat</td>
+                            </tr>
+                        </table>
+                        <p>Menerangkan bahwa dalam rangka melaksanakan perjalanan dinas dalam kota di kota Jakarta Barat untuk melaksanakan tugas kedinasan sesuai surat tugas nomor ${entry1} tanggal ${formattedDate2} saya benar-benar tidak menggunakan kendaraan dinas pada tanggal ${formattedDate3}.</p>
+                        <p>Demikian pernyataan ini saya buat dengan sebenar-benarnya untuk dipergunakan sebagaimana mestinya. Apabila terdapat kekeliruan dalam pertanggung jawaban SPD dan mengakibatkan kerugian negara, saya bersedia dituntut sesuai peraturan yang berlaku dan mengembalikan biaya transpor yang sudah terlanjur saya terima ke kas negara.</p>
+                        
+                        <div class="signature-section-wrapper">
+                            <div class="signature-section">
+                                <p class="date">Jakarta, ${formattedDate5}</p>
+                                <p class="signer">Pelaksana Perjalanan Dinas</p>
+                                <div class="signature-line"></div>
+                                <p class="name-signer">${pegawai.nama}</p>
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            `;
+      }
+    </script>
+  </body>
+</html>
