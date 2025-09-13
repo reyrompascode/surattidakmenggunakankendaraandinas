@@ -34,7 +34,7 @@ function addRow() {
     <td><input type="date" class="entry5" required></td>
     <td>
       <div class="button-group">
-        <button type="button" class="reset-button">Ulangi</button>
+        <button type="button" class="reset-button">Reset</button>
         <button type="button" class="export-row-button">Ekspor PDF</button>
       </div>
     </td>`;
@@ -268,4 +268,5 @@ function handleExportPDF() {
     })
     .open();
 }
+
 
