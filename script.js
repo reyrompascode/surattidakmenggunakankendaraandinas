@@ -218,7 +218,7 @@ function handleExportSingleRowPDF(row) {
       pageMargins: [50, 20, 50, 50],
       content: contents,
       defaultStyle: {
-        fontSize: 12,
+        fontSize: 11,
       },
     })
     .open();
@@ -263,8 +263,9 @@ function handleExportPDF() {
       pageMargins: [50, 20, 50, 50],
       content: contents,
       defaultStyle: {
-        fontSize: 12,
+        fontSize: 11,
       },
     })
     .open();
 }
+
