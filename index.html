@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Surat Pernyataan Tidak Menggunakan Kendaraan Dinas</title>
+
+    <!-- pdfmake -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container" id="form-container">
+      <h1>Surat Pernyataan Tidak Menggunakan Kendaraan Dinas</h1>
+      <p>Silakan isi data yang diperlukan pada baris yang tersedia.</p>
+
+      <div class="form-table-wrapper">
+        <table class="form-table">
+          <thead>
+            <tr>
+              <th>Nama Pegawai</th>
+              <th>Nomor Surat Tugas</th>
+              <th>Tanggal Surat Tugas</th>
+              <th>Tanggal Perjalanan Dinas</th>
+              <th>Tanggal Surat Ini</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="pegawai-list-body"></tbody>
+        </table>
+      </div>
+
+      <div class="button-controls">
+        <button type="button" id="reset-all-button">Reset Semua</button>
+        <button type="button" id="export-pdf-button">Ekspor Semua</button>
+        <button type="button" id="add-row-button">+ Tambah Baris</button>
+      </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
