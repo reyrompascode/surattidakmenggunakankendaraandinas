@@ -177,5 +177,7 @@ const databasePegawai = [
     nip: "199912282025062004",
     pangkat: "II/c",
     jabatan: "Pranata Keuangan APBN Terampil",
+  },
 ];
+
 
