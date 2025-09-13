@@ -173,4 +173,9 @@ const databasePegawai = [
     pangkat: "III/c",
     jabatan: "Statistisi Ahli Muda",
   },
+    nama: "Fathi'ah Ruma Islamaya, A.Md.",
+    nip: "199912282025062004",
+    pangkat: "II/c",
+    jabatan: "Pranata Keuangan APBN Terampil",
 ];
+
