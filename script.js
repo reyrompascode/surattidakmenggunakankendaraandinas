@@ -34,7 +34,7 @@ function addRow() {
     <td><input type="date" class="entry5" required></td>
     <td>
       <div class="button-group">
-        <button type="button" class="reset-button">Reset</button>
+        <button type="button" class="reset-button">Ulangi</button>
         <button type="button" class="export-row-button">Ekspor PDF</button>
       </div>
     </td>`;
@@ -51,6 +51,11 @@ function addRow() {
   row
     .querySelector(".name-input")
     .addEventListener("input", () => autofillData(row));
+
+  const nomorInput = row.querySelector(".entry1");
+  nomorInput.addEventListener("input", function () {
+    this.value = this.value.replace(/\s+/g, "");
+  });
 }
 
 function populateDatalist(dl) {
@@ -191,6 +196,18 @@ function validateRowData(rowData) {
   ) {
     return "Urutan tanggal salah.";
   }
+  // 🔹 Tambahan validasi: 7 karakter terakhir nomor surat tugas harus = MM/YYYY dari tanggal surat
+  if (noSurat && tglSurat) {
+    const nomorAkhir = noSurat.slice(-7);
+    const dateObj = new Date(tglSurat);
+    const bulan = String(dateObj.getMonth() + 1).padStart(2, "0");
+    const tahun = dateObj.getFullYear();
+    const bulanTahun = `${bulan}/${tahun}`;
+
+    if (nomorAkhir !== bulanTahun) {
+      return `Nomor Surat Tugas harus berakhir dengan ${bulanTahun}. Nomor sekarang: ${noSurat}`;
+    }
+  }
 
   return null;
 }
@@ -268,5 +285,3 @@ function handleExportPDF() {
     })
     .open();
 }
-
-
