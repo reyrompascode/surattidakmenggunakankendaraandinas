@@ -16,6 +16,12 @@ document.addEventListener("DOMContentLoaded", () => {
   document
     .getElementById("export-pdf-button")
     .addEventListener("click", handleExportPDF);
+  document
+    .getElementById("copy-no-surat-btn")
+    .addEventListener("click", copyNomorSurat);
+  document
+    .getElementById("copy-tgl-surat-btn")
+    .addEventListener("click", copyTanggalSurat);
 });
 
 function addRow() {
@@ -94,6 +100,35 @@ function handleReset(row) {
 
 function handleResetAll() {
   document.querySelectorAll("#pegawai-list-body tr").forEach(handleReset);
+}
+function copyNomorSurat() {
+  const rows = document.querySelectorAll("#pegawai-list-body tr");
+  if (!rows.length) return;
+
+  const firstValue = rows[0].querySelector(".entry1").value;
+  if (!firstValue) {
+    alert("Nomor Surat Tugas baris pertama kosong.");
+    return;
+  }
+
+  rows.forEach((row, idx) => {
+    if (idx > 0) row.querySelector(".entry1").value = firstValue;
+  });
+}
+
+function copyTanggalSurat() {
+  const rows = document.querySelectorAll("#pegawai-list-body tr");
+  if (!rows.length) return;
+
+  const firstValue = rows[0].querySelector(".entry2").value;
+  if (!firstValue) {
+    alert("Tanggal Surat Tugas baris pertama kosong.");
+    return;
+  }
+
+  rows.forEach((row, idx) => {
+    if (idx > 0) row.querySelector(".entry2").value = firstValue;
+  });
 }
 
 function generatePDFContent(rowData) {
