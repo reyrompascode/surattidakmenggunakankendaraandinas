@@ -10,7 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="container" id="form-container">
@@ -22,9 +22,17 @@
           <thead>
             <tr>
               <th>Nama Pegawai</th>
-              <th>Nomor Surat Tugas</th>
-              <th>Tanggal Surat Tugas</th>
-              <th>Tanggal Perjalanan Dinas</th>
+              <th>
+                Nomor Surat Tugas
+                <br />
+                <button type="button" id="copy-no-surat-btn">Copy</button>
+              </th>
+              <th>
+                Tanggal Surat Tugas
+                <br />
+                <button type="button" id="copy-tgl-surat-btn">Copy</button>
+              </th>
+              <th>Tanggal Tidak Menggunakan Kendaraan</th>
               <th>Tanggal Surat Ini</th>
               <th>Aksi</th>
             </tr>
@@ -41,7 +49,6 @@
     </div>
 
     <script src="data.js"></script>
-    <script src="./script.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
-
