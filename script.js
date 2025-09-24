@@ -233,14 +233,12 @@ function validateRowData(rowData) {
   }
   // 🔹 Tambahan validasi: 7 karakter terakhir nomor surat tugas harus = MM/YYYY dari tanggal surat
   if (noSurat && tglSurat) {
-    const nomorAkhir = noSurat.slice(-7);
+    const nomorAkhir = noSurat.slice(-4);
     const dateObj = new Date(tglSurat);
-    const bulan = String(dateObj.getMonth() + 1).padStart(2, "0");
-    const tahun = dateObj.getFullYear();
-    const bulanTahun = `${bulan}/${tahun}`;
+    const tahun = String(dateObj.getFullYear()); // ambil tahun (YYYY)
 
-    if (nomorAkhir !== bulanTahun) {
-      return `Nomor Surat Tugas harus berakhir dengan ${bulanTahun}. Nomor sekarang: ${noSurat}`;
+    if (nomorAkhir !== tahun) {
+      return `Nomor Surat Tugas harus berakhir dengan ${tahun}. Nomor sekarang: ${noSurat}`;
     }
   }
 
@@ -320,3 +318,4 @@ function handleExportPDF() {
     })
     .open();
 }
+
