@@ -227,11 +227,11 @@ function validateRowData(rowData) {
 
   if (
     new Date(tglTidak) < new Date(tglSurat) ||
-    new Date(tglKeluar) <= new Date(tglTidak)
+    new Date(tglKeluar) < new Date(tglTidak)
   ) {
     return "Urutan tanggal salah.";
   }
-  // 🔹 Tambahan validasi: 7 karakter terakhir nomor surat tugas harus = MM/YYYY dari tanggal surat
+  // 🔹 Tambahan validasi:  karakter terakhir nomor surat tugas harus = YYYY dari tanggal surat
   if (noSurat && tglSurat) {
     const nomorAkhir = noSurat.slice(-4);
     const dateObj = new Date(tglSurat);
@@ -318,4 +318,5 @@ function handleExportPDF() {
     })
     .open();
 }
+
 
