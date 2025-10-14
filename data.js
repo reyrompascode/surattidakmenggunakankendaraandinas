@@ -138,6 +138,12 @@ const databasePegawai = [
     "jabatan": "Statistisi Penyelia"
   },
   {
+    "nama": "Isneny Elmanda Karina Manullang S.Stat.",
+    "nip": "200004172022032001",
+    "pangkat": "Penata Muda / III a",
+    "jabatan": "Statistisi Pelaksana Lanjutan"
+  },
+  {
     "nama": "Probo Kuncoro, A.Md.",
     "nip": "197810182001121002",
     "pangkat": "Penata Muda Tk. I / III b",
@@ -180,6 +186,7 @@ const databasePegawai = [
     "jabatan": "Staf"
   }
 ];
+
 
 
 
