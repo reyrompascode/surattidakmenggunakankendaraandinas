@@ -188,25 +188,26 @@
   {
     "nama": "Habib Ansori",
     "nip": "198212242025211034",
-    "pangkat": "",
+    "pangkat": "-",
     "jabatan": "Pegawai Kontrak"
   },
   {
     "nama": "M Muchsi",
     "nip": "197901232025211020",
-    "pangkat": "",
+    "pangkat": "-",
     "jabatan": "Pegawai Kontrak"
   },
   {
     "nama": "Acep Solihin",
     "nip": "198308212025211025",
-    "pangkat": "",
+    "pangkat": "-",
     "jabatan": "Pegawai Kontrak"
   },
   {
     "nama": "Elyas Jantana",
     "nip": "198801122025211060",
-    "pangkat": "",
+    "pangkat": "-",
     "jabatan": "Pegawai Kontrak"
   }
+
 ]
