@@ -364,7 +364,6 @@ function validateData(data) {
     "rawTglSuratPernyataan", // Tanggal Surat Pernyataan
     "tanggalKegiatan", // Tanggal Kegiatan
     "nama",
-    "pangkat",
   ];
   for (const field of requiredFields) {
     if (
@@ -728,3 +727,4 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   });
 });
+
