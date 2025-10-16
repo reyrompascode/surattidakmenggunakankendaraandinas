@@ -37,7 +37,7 @@ h3 {
 .form-table td {
   padding: 8px;
   border: 1px solid #ccc;
-  vertical-align: top;
+  vertical-align: middle; /* Ubah ke middle agar elemen sejajar tengah */
 }
 
 .form-table th {
@@ -48,13 +48,18 @@ h3 {
 
 /* Input */
 .form-table input[type="text"],
-.form-table input[type="date"] {
+.form-table input[type="date"],
+.form-table select {
+  /* Tambahkan select di sini */
   width: calc(100% - 16px);
   padding: 8px;
   box-sizing: border-box;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 14px;
+}
+.form-table select {
+  width: 100%; /* Pastikan select 100% */
 }
 
 .form-table .button-group {
@@ -69,10 +74,25 @@ h3 {
   padding: 8px;
   border-radius: 4px;
   cursor: pointer;
+  flex-grow: 1; /* Agar tombol mengisi ruang yang ada */
 }
 
 .reset-button:hover {
   background-color: #c82333;
+}
+
+/* Tombol Ekspor di tabel */
+.form-table .export-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  flex-grow: 1;
+}
+.form-table .export-btn:hover {
+  background-color: #0056b3;
 }
 
 /* Tombol bawah */
@@ -119,6 +139,46 @@ h3 {
 }
 
 th button {
-  display: block; /* tombol jadi satu baris sendiri */
-  margin: 5px auto 0; /* otomatis rata tengah + jarak atas */
+  display: block;
+  margin: 5px auto 0;
+}
+
+/* --- PERBAIKAN UTAMA UNTUK FITUR TANGGAL 1 HARI --- */
+
+/* Sembunyikan semua label yang lama (Mulai/Selesai) */
+.date-label {
+  display: none !important;
+}
+
+/* Pastikan input tanggal 1 hari (Mulai) mengisi seluruh sel */
+.date-input-group {
+  display: block; /* Agar input bisa memenuhi lebar */
+  padding: 0;
+}
+
+.form-table input[type="date"].tanggal-kegiatan-mulai {
+  /* Hapus penyesuaian lebar lama dan buat 100% */
+  width: 100%;
+  padding: 8px;
+}
+
+/* Hapus styling untuk input Selesai yang sekarang hidden */
+.tanggal-kegiatan-selesai-hidden {
+  display: none;
+}
+
+/* Penyesuaian lebar kolom (untuk menjaga tampilan rapi) */
+.form-table th:nth-child(4),
+.form-table td:nth-child(4) {
+  min-width: 100px; /* Lebar minimum untuk kolom tanggal 1 hari */
+}
+
+.form-table th:nth-child(5),
+.form-table td:nth-child(5) {
+  min-width: 180px; /* Lebar minimum untuk kolom Nama Pegawai */
+}
+
+.form-table th:nth-child(7),
+.form-table td:nth-child(7) {
+  min-width: 150px; /* Lebar minimum untuk kolom Aksi */
 }
