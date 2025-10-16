@@ -3,19 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Surat Pernyataan Tidak Menggunakan Kendaraan Dinas</title>
+    <title>
+      Generator Surat Pernyataan Non-Kendaraan Dinas BPS Kota Jakarta Barat
+    </title>
 
-    <!-- pdfmake -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-    <!-- CSS -->
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="container" id="form-container">
-      <h1>Surat Pernyataan Tidak Menggunakan Kendaraan Dinas</h1>
-      <p>Silakan isi data yang diperlukan pada baris yang tersedia.</p>
+      <h1>Form Surat Pernyataan Tidak Menggunakan Kendaraan Dinas</h1>
+      <p>
+        Silakan isi data Perjalanan Dinas pada baris yang tersedia. Setiap baris
+        mewakili satu Surat Pernyataan.
+      </p>
 
       <div class="form-table-wrapper">
         <table class="form-table">
@@ -32,8 +34,18 @@
                 <br />
                 <button type="button" id="copy-tgl-surat-btn">Copy</button>
               </th>
-              <th>Tanggal Perjalanan Dinas</th>
-              <th>Tanggal Surat Ini</th>
+              <th>
+                Tanggal Perjadin
+                <br />
+                <button type="button" id="copy-tgl-kegiatan-btn">Copy</button>
+              </th>
+              <th>
+                Tanggal Surat Ini (Tanda Tangan)
+                <br />
+                <button type="button" id="copy-tgl-surat-pernyataan-btn">
+                  Copy
+                </button>
+              </th>
               <th>Aksi</th>
             </tr>
           </thead>
@@ -47,9 +59,6 @@
         <button type="button" id="add-row-button">+ Tambah Baris</button>
       </div>
     </div>
-
-    <script src="data.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
-
